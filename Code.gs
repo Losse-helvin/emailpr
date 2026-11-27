@@ -61,7 +61,18 @@ function doGet(e) {
     const lp = lireConfig_().lp_url;
     if (!lp) return html_('<!doctype html><html lang="fr"><meta charset="utf-8"><body style="font:16px Arial;margin:12vh auto;max-width:560px;padding:24px"><h2>Merci pour votre intérêt</h2><p>La page de présentation n’est pas encore configurée.</p></body></html>');
     const target = lp + (lp.indexOf('?') === -1 ? '?' : '&') + 'id=' + encodeURIComponent(id);
-    return html_('<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><p>Redirection vers la page de présentation…</p><script>window.top.location.replace(' + JSON.stringify(target) + ');</script><noscript><a href="' + escapeAttr_(target) + '">Continuer</a></noscript></html>');
+    return html_(
+      '<!doctype html><html lang="fr">' +
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width">' +
+      '<title>Continuer</title>' +
+      '<body style="font:16px Arial,sans-serif;max-width:560px;margin:12vh auto;padding:24px;color:#263238">' +
+      '<p>Merci pour votre intérêt.</p>' +
+      '<p><a href="' + escapeAttr_(target) + '" target="_top" rel="noopener" ' +
+      'style="display:inline-block;background:#238636;color:#fff;text-decoration:none;padding:12px 18px;border-radius:5px">' +
+      'Continuer vers la page de présentation</a></p>' +
+      '</body></html>'
+    );
   }
   return html_('<!doctype html><html lang="fr"><meta charset="utf-8"><body style="font:16px Arial;padding:30px">Service d’e-mailing UBE Pro opérationnel.</body></html>');
 }
